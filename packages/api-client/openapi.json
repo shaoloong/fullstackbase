@@ -1,0 +1,33 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "fullstack-base API",
+    "version": "0.1.0",
+    "description": "契约快照。运行 bash scripts/gen-api.sh 会由后端 /v3/api-docs 覆盖本文件，请勿手工编辑。"
+  },
+  "servers": [{ "url": "http://localhost:8082", "description": "本地开发" }],
+  "paths": {
+    "/api/features": {
+      "get": {
+        "tags": ["features"],
+        "summary": "已注册功能列表",
+        "operationId": "listFeatures",
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/users": {
+      "get": {
+        "tags": ["user"],
+        "summary": "分页查询用户列表",
+        "operationId": "listUsers",
+        "parameters": [
+          { "name": "page", "in": "query", "schema": { "type": "integer", "default": 1 } },
+          { "name": "size", "in": "query", "schema": { "type": "integer", "default": 10 } },
+          { "name": "keyword", "in": "query", "schema": { "type": "string" } },
+          { "name": "status", "in": "query", "schema": { "type": "integer" } }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    }
+  }
+}

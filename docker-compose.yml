@@ -1,0 +1,23 @@
+# 本地开发数据库（可选）：默认 H2 内存库零配置，只有切 mysql profile 才需要起
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: fullstack-base-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: change-me
+      MYSQL_DATABASE: fullstack_base
+      TZ: Asia/Shanghai
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      # 宿主 13307：避开本机已占用的 3306 / 3307（tcmp 用 13306）
+      - "13307:3306"
+    volumes:
+      - fb_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -pchange-me"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  fb_mysql_data:

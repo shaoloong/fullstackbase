@@ -1,0 +1,34 @@
+# ===== 依赖 / 构建产物 =====
+node_modules/
+target/
+dist/
+coverage/
+.turbo/
+*.tsbuildinfo
+*.log
+
+# ===== IDE / 编辑器 =====
+.vscode/
+.idea/
+*.iml
+*.swp
+*~
+
+# ===== 环境变量 / 密钥（示例文件除外）=====
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== 本地运行时数据 =====
+*.mv.db
+*.trace.db
+data/
+
+# ===== 生成器临时产物 =====
+.scripts-cache/

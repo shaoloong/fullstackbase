@@ -1,0 +1,24 @@
+{
+  "name": "@fullstack-base/backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Spring Boot 多模块后端（turbo shim：把 mvn 命令纳入 pnpm/turbo 编排）",
+  "scripts": {
+    "dev": "mvn -q -DskipTests install -T 1C && mvn -pl main spring-boot:run",
+    "build": "mvn -q -DskipTests package",
+    "test": "mvn -q test",
+    "start": "java -jar main/target/base-main-0.1.0-SNAPSHOT.jar"
+  },
+  "turbo": {
+    "tasks": {
+      "build": {
+        "cache": false,
+        "inputs": ["pom.xml", "*/pom.xml", "modules/*/pom.xml", "**/src/**"]
+      },
+      "test": {
+        "cache": false,
+        "inputs": ["pom.xml", "*/pom.xml", "modules/*/pom.xml", "**/src/**"]
+      }
+    }
+  }
+}

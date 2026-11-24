@@ -1,0 +1,8 @@
+packages:
+  - apps/*
+  - packages/*
+
+# pnpm >=10 默认拦截依赖的构建脚本；esbuild 是 Vite 构建必需，其余拒绝
+allowBuilds:
+  esbuild: true
+  '@parcel/watcher': false

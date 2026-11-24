@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.example.base</groupId>
+    <artifactId>fullstack-base-backend</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>base-module-user</artifactId>
+  <name>base-module-user</name>
+  <description>示例业务模块：用户列表分页 / 关键词 / 状态筛选。新增模块请复制 templates/backend-module</description>
+
+  <!-- 业务模块只依赖 core：common 的东西经 core 传递；禁止模块之间互相依赖 -->
+  <dependencies>
+    <dependency>
+      <groupId>com.example.base</groupId>
+      <artifactId>base-core</artifactId>
+    </dependency>
+  </dependencies>
+</project>

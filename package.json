@@ -1,0 +1,26 @@
+{
+  "name": "fullstack-base",
+  "version": "0.1.0",
+  "contractVersion": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.0.0",
+  "description": "可扩展全栈底座：Vue3 + Spring Boot 3.5 + JDK 21，结构对齐 tcmp（多模块 + 模板 + 生成器 + 契约层）",
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "smoke": "bash scripts/backend-smoke.sh",
+    "gen:api": "bash scripts/gen-api.sh",
+    "check:features": "node scripts/check-features.js",
+    "new:module": "node scripts/new-module.js",
+    "db:up": "docker compose up -d --wait",
+    "db:down": "docker compose down",
+    "backend:dev": "mvn -f apps/backend/pom.xml -q -DskipTests install -T 1C && mvn -f apps/backend/pom.xml -pl main spring-boot:run"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,50 @@
+# ============================================================
+# 默认 profile：H2 内存库，零外部依赖，mvn spring-boot:run 直接可跑
+# 切换到真实 MySQL：mvn spring-boot:run -Dspring-boot.run.profiles=mysql
+# ============================================================
+server:
+  port: 8082                  # 避开本机已占用的 8080；前端 Vite 代理指向这里
+
+spring:
+  application:
+    name: fullstack-base
+
+  datasource:
+    # MODE=MySQL：让 H2 兼容 MySQL 语法（AUTO_INCREMENT / TINYINT / LIMIT 等）
+    # DB_CLOSE_DELAY=-1：连接全部关闭时也保留内存库，否则数据会凭空消失
+    url: jdbc:h2:mem:fullstack_base;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ''
+
+  h2:
+    console:
+      enabled: true           # 浏览器访问 http://localhost:8082/h2-console 可直观看表
+      path: /h2-console       # 登录时 JDBC URL 填上面 url 的值，账号 sa、密码留空
+
+  flyway:
+    enabled: true             # 启动时自动执行 db/migration/V1__init.sql、V2__seed_data.sql
+    locations: classpath:db/migration
+    baseline-on-migrate: true # 库里已有表但没迁移记录时，以当前状态为基线，避免启动失败
+
+  jackson:
+    time-zone: Asia/Shanghai  # 不设会差 8 小时（容器/服务器默认 UTC 时尤其明显）
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: non_null   # null 字段不返回，前端少写一堆判空
+
+  threads:
+    virtual:
+      enabled: true           # JDK 21 虚拟线程：一行开关，不用再手工调 Tomcat 线程池大小
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true   # created_at → createdAt，数据库下划线自动映射驼峰
+  global-config:
+    db-config:
+      logic-delete-field: deleted        # 逻辑删除字段名
+      logic-delete-value: 1             # 删除后写入的值
+      logic-not-delete-value: 0         # 未删除的值；查询时 MP 会自动拼 WHERE deleted = 0
+
+logging:
+  level:
+    com.example.base.modules: debug       # 开发期打印真实 SQL，方便对照教程理解 ORM 行为
