@@ -1,6 +1,6 @@
 # fullstack-base — 可扩展全栈底座
 
-结构参考 `D:\Workspace\tcmp`，技术栈按当前项目基准收敛为 **JDK 21 + Spring Boot 3.5.16 + Vue3 + Vite**。
+技术栈按当前项目基准收敛为 **JDK 21 + Spring Boot 3.5.16 + Vue3 + Vite**。
 不预设业务，内置一个已跑通的「用户列表查询」作为范例，重点是把**后面继续加功能的入口**全部铺好。
 
 > AI 代理请先读 [AGENTS.md](AGENTS.md)；要加功能直接看 [docs/extend-guide.md](docs/extend-guide.md)。
