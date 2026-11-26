@@ -28,6 +28,7 @@
     <module>common</module>
     <module>core</module>
     <module>modules/user</module>
+    <module>modules/product</module>
     <!-- @NEW_MODULE -->
     <module>main</module>
   </modules>
@@ -55,6 +56,11 @@
       <dependency>
         <groupId>com.example.base</groupId>
         <artifactId>base-module-user</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.example.base</groupId>
+        <artifactId>base-module-product</artifactId>
         <version>${project.version}</version>
       </dependency>
       <!-- @NEW_DEPENDENCY -->

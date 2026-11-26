@@ -23,7 +23,7 @@ fi
 echo "   ✅ 三处版本对齐：$ROOT_CV"
 
 echo "==> [2/4] 从运行中的后端导出契约"
-OUT="$(mktemp)"
+OUT="$(mktemp --suffix=.json)"   # node require() 只按 .json 扩展名解析 JSON，无后缀会当 JS 解析失败
 if ! curl -s --noproxy '*' --max-time 15 -o "$OUT" "$BASE/v3/api-docs"; then
   echo "❌ 无法连接 $BASE/v3/api-docs，请先启动后端：pnpm backend:dev"; rm -f "$OUT"; exit 1
 fi
@@ -37,12 +37,13 @@ rm -f "$OUT"
 echo "   ✅ 已写入 $CLIENT/openapi.json"
 
 echo "==> [3/4] orval 生成类型化客户端（未安装则跳过，不阻断）"
-if [ -x "$ROOT/node_modules/.bin/orval" ] || [ -x "$CLIENT/node_modules/.bin/orval" ]; then
+if { [ -x "$ROOT/node_modules/.bin/orval" ] || [ -x "$CLIENT/node_modules/.bin/orval" ]; } \
+   && [ -f "$CLIENT/orval.config.js" ]; then
   (cd "$CLIENT" && "$ROOT/node_modules/.bin/orval" --config ./orval.config.js 2>/dev/null \
     || ./node_modules/.bin/orval --config ./orval.config.js)
   echo "   ✅ 已生成 src/gen/"
 else
-  echo "   ⏭  未安装 orval（pnpm install 后可用）；当前契约层仍是零依赖手写出口"
+  echo "   ⏭  未安装 orval 或缺少 orval.config.js；当前契约层仍是零依赖手写出口"
   echo "      前端各域 api.js 继续可用，不影响构建与运行"
 fi
 

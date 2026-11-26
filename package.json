@@ -1,7 +1,7 @@
 {
   "name": "fullstack-base",
   "version": "0.1.0",
-  "contractVersion": "0.1.0",
+  "contractVersion": "0.2.0",
   "private": true,
   "packageManager": "pnpm@10.0.0",
   "description": "可扩展全栈底座：Vue3 + Spring Boot 3.5 + JDK 21，结构对齐 tcmp（多模块 + 模板 + 生成器 + 契约层）",

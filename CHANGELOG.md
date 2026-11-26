@@ -3,6 +3,24 @@
 本项目采用 [Semantic Versioning](https://semver.org/)。**当前版本段落置顶**，每次版本相关变更
 （版本号 bump、发版、用户可感知行为变更、契约版本变更）都在此追加条目。
 
+## 0.2.0 — 2026-11-26
+
+新增产品管理功能域，契约版本同步 bump 至 0.2.0。
+
+### 新增
+
+- **产品管理模块**（`modules/product`）：`GET/POST/PUT/DELETE /api/products` 五个接口，
+  支持分页、名称/编码关键词、状态筛选、详情、新增、修改与逻辑删除；编码唯一冲突返回 409。
+- **`t_product` 表与 `V3__product.sql`**：含 `uk_product_code` 唯一约束与
+  `idx_product_status_created` 联合索引；未修改 `V1`/`V2`。
+- **前端 `/products` 页面**：列表/筛选/分页与新增/编辑/删除表单闭环，路由与菜单由注册表生成。
+- **CRUD 集成测试**：`ProductServiceTest` 覆盖分页、筛选、新增、修改、逻辑删除与 400/404/409 业务码。
+
+### 变更
+
+- 契约版本 0.1.0 → 0.2.0（根 `package.json`、`OpenApiConfig`、`openapi.json` 三处同步）。
+- 修复基线 `UserService.java` 中阻断编译的孤立字符 `i`（零行为变更）。
+
 ## 0.1.0 — 2026-11-13
 
 首个可用底座，结构参考 `D:\Workspace\tcmp`，内置一个已跑通的用户列表查询功能。

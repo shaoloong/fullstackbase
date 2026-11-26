@@ -25,6 +25,10 @@
       <groupId>com.example.base</groupId>
       <artifactId>base-module-user</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.example.base</groupId>
+      <artifactId>base-module-product</artifactId>
+    </dependency>
     <!-- @NEW_DEPENDENCY -->
 
     <dependency>
