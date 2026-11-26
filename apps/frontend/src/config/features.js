@@ -30,6 +30,14 @@ const registry = [
 ]
 
 // 用 push 登记：生成器只需在锚点前插一行，不会出现尾随逗号的语法坑
+registry.push({
+  key: 'product',
+  title: '产品管理',
+  path: '/products',
+  icon: '🧩',
+  ready: true,
+  component: () => import('../features/product/Page.vue')
+})
 // @NEW_FEATURE
 
 export const features = registry

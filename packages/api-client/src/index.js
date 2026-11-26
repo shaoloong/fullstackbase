@@ -15,4 +15,5 @@
  */
 
 // export * from './gen/user/user'
+// 产品管理 域接口：生成契约后改为 export * from './gen/product/product'
 // @NEW_EXPORT

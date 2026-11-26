@@ -42,6 +42,7 @@ public class FeatureRegistry {
 
     static {
         FEATURES.add(new Feature("user", "用户管理", "/users", "/api/users", "👤", true));
+        FEATURES.add(new Feature("product", "产品管理", "/products", "/api/products", "🧩", true));
         // @NEW_FEATURE
     }
 
